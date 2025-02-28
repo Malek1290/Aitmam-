@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Aitmam</title>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-    <link rel="stylesheet" href="css.css"
+    <link rel="stylesheet" href="css.css">
 </head>
 <body>
     <div id="particles-js"></div>
@@ -18,11 +18,9 @@
         </header>
 
         <div class="parallax">
-             <!-- بعد عنصر الـ parallax وقبل love-note -->
              <div class="poetry-section" contenteditable="true" id="poetryEditor"></div>
         <button class="save-btn" onclick="savePoetry()">💾 حفظ الأشعار</button>
             <div class="overlay"></div>
-
         </div>
         
         <div class="love-note">
@@ -31,10 +29,9 @@
         </div>
 
         <div class="gallery">
-            <!-- Add your photos here -->
-            <img src="t.jpg" alt="Our Memory">
-            <img src="j.jpg" alt="Our Adventure">
-            <img src="e.jpg" alt="Our Moment">
+            <img src="t.jpg" alt="Our Memory" loading="lazy">
+            <img src="j.jpg" alt="Our Adventure" loading="lazy">
+            <img src="e.jpg" alt="Our Moment" loading="lazy">
         </div>
 
         <div class="love-counter" id="counter">
@@ -42,36 +39,6 @@
         </div>
     </div>
 
-    <script>
-        // Updated particles.js configuration with coffee colors
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80 },
-                color: { value: "#6f4e37" },
-                shape: { type: "heart" },
-                opacity: { value: 0.5 },
-                size: { value: 10 },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: "none",
-                    random: false,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false,
-                }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: { enable: true, mode: "repulse" },
-                    onclick: { enable: true, mode: "push" },
-                    resize: true
-                }
-            }
-        });
-
-        // Love counter remains the same
-    </script>
+    <script src="java.js"></script>
 </body>
 </html>
