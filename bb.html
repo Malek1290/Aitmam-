@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aitmam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            background: #f4e1d2;
+            overflow-x: hidden;
+            color: #4b3621;
+            line-height: 1.6;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            padding: 4rem 0;
+            animation: fadeIn 2s;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #6f4e37;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: heartbeat 1.5s infinite;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a68a64;
+            letter-spacing: 2px;
+        }
+
+        .love-note {
+            background: rgba(255, 248, 240, 0.9);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(111,78,55,0.1);
+            transform: rotate(-1deg);
+            transition: transform 0.3s ease;
+            border: 1px solid #d4b996;
+        }
+
+        .love-note:hover {
+            transform: rotate(1deg) scale(1.02);
+        }
+
+        .parallax {
+            background-image: url('https://images.unsplash.com/photo-1513296859890-6609c7237a5b');
+            min-height: 500px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            margin: 4rem 0;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(111,78,55,0.3);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            border: 2px solid #d4b996;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .love-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #e6d5c3;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            border: 1px solid #d4b996;
+        }
+
+        .love-counter:hover {
+            transform: rotate(360deg);
+            background: #d4b996;
+        }
+
+.poetry-section {
+    background: rgba(255, 248, 240, 0.9);
+    min-height : 300px;
+    margin : 3rem 0;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(111,78,55,0.1);
+    border: 2px dashed #a68a64;
+    position: relative;
+    z-index: 2;
+}
+
+.poetry-section::before {
+    content: "✍️ اكتب أشعارك هنا...";
+    color: #a68a64;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.6;
+    pointer-events: none;
+    font-style: italic;
+}
+
+.poetry-section:focus::before,
+.poetry-section:not(:empty)::before {
+    display: none;
+}
+
+.save-btn {
+    background: #6f4e37;
+    color: white;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 1rem auto;
+    font-family: 'Merriweather', serif;
+}
+
+.save-btn:hover {
+    background: #a68a64;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1>Aitmam</h1>
+            <p class="subtitle">Every heartbeat whispers your name</p>
+        </header>
+
+        <div class="parallax">
+             <!-- بعد عنصر الـ parallax وقبل love-note -->
+             <div class="poetry-section" contenteditable="true" id="poetryEditor"></div>
+        <button class="save-btn" onclick="savePoetry()">💾 حفظ الأشعار</button>
+            <div class="overlay"></div>
+
+        </div>
+        
+        <div class="love-note">
+            <h2>الي فاطمة</h2>
+            <p>منذ اللحظة التي تقابلت فيها أرواحنا، اكتسب عالمي ألوانًا لم أكن أعلم بوجودها من قبل. ابتسامتك تنير أحلك أيامي..</p>
+        </div>
+
+        <div class="gallery">
+            <!-- Add your photos here -->
+            <img src="t.jpg" alt="Our Memory">
+            <img src="j.jpg" alt="Our Adventure">
+            <img src="e.jpg" alt="Our Moment">
+        </div>
+
+        <div class="love-counter" id="counter">
+            <h3>Days Loved: <span id="count">∞</span></h3>
+        </div>
+    </div>
+
+    <script>
+        // Updated particles.js configuration with coffee colors
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80 },
+                color: { value: "#6f4e37" },
+                shape: { type: "heart" },
+                opacity: { value: 0.5 },
+                size: { value: 10 },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            }
+        });
+
+        // Love counter remains the same
+    </script>
+</body>
+</html>
